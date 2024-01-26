@@ -43,4 +43,10 @@ let student2 = {
     age: 30,
     isFemale: true,
 };
-//student2.false //error
+let student3 = {
+    name: 'Emily',
+    age: 30,
+    isFemale: true,
+    score: 'F',
+};
+//student1.score = 'G' //error

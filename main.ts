@@ -65,3 +65,31 @@ let student2: Student = {
 	isFemale: true,
 };
 //student2.false //error
+
+// type 특정 커스터마이징된 자료형을 새로 선언할때
+// type vs interface 차이점
+// interface는 객체에만 적용 가능
+// type은 자료형 상관없이 모두 적용 가능
+// 커스텀 자료형을 만들어야할때 객체는 가급적 interface, 그외의 자료형은 type으로 지정
+type Grade = 'A' | 'B' | 'C' | 'D' | 'F';
+/*
+  interface S {
+    name: string;
+    age: number;
+    readonly isFemale: boolean;
+    score: Grade;
+  }
+*/
+type S = {
+	name: string;
+	age: number;
+	readonly isFemale: boolean;
+	score: Grade;
+};
+let student3: S = {
+	name: 'Emily',
+	age: 30,
+	isFemale: true,
+	score: 'F',
+};
+//student1.score = 'G' //error
