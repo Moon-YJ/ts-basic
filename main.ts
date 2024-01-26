@@ -188,12 +188,38 @@ getAnyLength(numbers);
 getAnyLength(letters);
 getAnyLength(weired);
 
-// generic으로 호출시 상세타입을 파라미터로 전달
+// 따라서 generic으로 호출시 상세타입을 파라미터로 전달
 const getGenericLength = <t>(arr: t[]) => {
 	return arr.length;
 };
-
 // 함수호출시 미리 지정한 경로 타입을 전달하는 구조
 getGenericLength<string>(['a', 'b']);
 getGenericLength<number>([1, 2]);
 getGenericLength<number | string>([1, '2']);
+
+// 객체로 구성된 배열의 타입
+// 개별 객체의 타입인 interface 지정
+interface StudentD {
+	name: string;
+	age: number;
+	isFemale: boolean;
+	address?: string;
+}
+// 각각의 interface로 구성된 타입을 지정 (실무에서 가장 많이 쓰이는 패턴 - DB나 API에서 데이터 가져올 때)
+const classInfo: StudentD[] = [
+	{ name: 'David', age: 20, isFemale: false, address: 'Seoul' },
+	{ name: 'Michelle', age: 30, isFemale: true },
+	{ name: 'James', age: 31, isFemale: false },
+];
+
+// 단순 문자타입으로 구성된 배열
+const names: string[] = ['red', 'green', 'blue'];
+const names2: number[] = [1, 2, 3];
+const getArrayInfo = <t>(arr: t[]) => {
+	console.log(arr);
+};
+// 제네릭으로 호출시 interface도 타입으로 전달해서 호출 가능 (해당 패턴을 가장 많이 사용)
+getArrayInfo<StudentD>(classInfo);
+getArrayInfo<string>(names);
+// 아래처럼 함수에서 의도한 값과 다른값이 들어올때 generic을 사용하면 오류파악 가능
+//getArrayInfo<string>(names2); //error

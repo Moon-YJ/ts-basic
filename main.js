@@ -107,7 +107,7 @@ const weired = [false, 3, '3'];
 getAnyLength(numbers);
 getAnyLength(letters);
 getAnyLength(weired);
-// generic으로 호출시 상세타입을 파라미터로 전달
+// 따라서 generic으로 호출시 상세타입을 파라미터로 전달
 const getGenericLength = (arr) => {
     return arr.length;
 };
@@ -115,3 +115,20 @@ const getGenericLength = (arr) => {
 getGenericLength(['a', 'b']);
 getGenericLength([1, 2]);
 getGenericLength([1, '2']);
+// 각각의 interface로 구성된 타입을 지정 (실무에서 가장 많이 쓰이는 패턴 - DB나 API에서 데이터 가져올 때)
+const classInfo = [
+    { name: 'David', age: 20, isFemale: false, address: 'Seoul' },
+    { name: 'Michelle', age: 30, isFemale: true },
+    { name: 'James', age: 31, isFemale: false },
+];
+// 단순 문자타입으로 구성된 배열
+const names = ['red', 'green', 'blue'];
+const names2 = [1, 2, 3];
+const getArrayInfo = (arr) => {
+    console.log(arr);
+};
+// 제네릭으로 호출시 interface도 타입으로 전달해서 호출 가능 (해당 패턴을 가장 많이 사용)
+getArrayInfo(classInfo);
+getArrayInfo(names);
+// 아래처럼 함수에서 의도한 값과 다른값이 들어올때 generic을 사용하면 오류파악 가능
+//getArrayInfo<string>(names2); //error
