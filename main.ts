@@ -93,3 +93,43 @@ let student3: S = {
 	score: 'F',
 };
 //student1.score = 'G' //error
+
+// interface는 객체의 property 확장에 따른 구조변경이 편함, 하지만 type은 불가능
+interface Member {
+	name: string;
+	age: number;
+}
+interface Member {
+	name: string;
+	age: number;
+	isFemale: boolean;
+}
+let student4: Member = {
+	name: 'Paul',
+	age: 30,
+	isFemale: false,
+};
+
+// type을 사용하는 경우
+// 1. 기존 객체타입의 property 추가하는 것이 아닌, 서로 다른 객체를 합쳐서 새로운 타입을 만드는 경우
+// 2. 객체가 아닌 일반 자료형이지만 자주 사용하는 커스터마이징된 타입을 재활용하는 경우
+interface StudentA {
+	name: string;
+	age: number;
+}
+interface StudentB {
+	name: string;
+	isFemale: boolean;
+}
+// 1. type으로 서로 다른 두개의 인터페이스를 Intersection으로 합쳐서 새로운 타입 지정
+type StudentAB = StudentA & StudentB;
+let student5: StudentAB = {
+	name: 'Paul',
+	age: 30,
+	isFemale: false,
+};
+// 2. 객체는 아니지만 특정 커스터마이징된 타입을 재활용해야할때 type으로 지정
+type commonType = string | null;
+const testA = (info: commonType) => {
+	console.log(info);
+};

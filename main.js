@@ -49,4 +49,16 @@ let student3 = {
     isFemale: true,
     score: 'F',
 };
-//student1.score = 'G' //error
+let student4 = {
+    name: 'Paul',
+    age: 30,
+    isFemale: false,
+};
+let student5 = {
+    name: 'Paul',
+    age: 30,
+    isFemale: false,
+};
+const testA = (info) => {
+    console.log(info);
+};
