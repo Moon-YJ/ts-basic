@@ -160,3 +160,40 @@ const introduce = (name: string, age: number) => {
 // ||연산자는 빈문자나 0같이 실제적인 값조차도 false로 인식해서 예외처리하므로 예상치못한 문제발생 가능
 // ??연산자는 무조건 undefined, null같이 실제적으로 에러가 발생할만한 상황에서만 예외처리
 introduce('my Baby', 0);
+
+// Generic
+// 공통된 규칙인데 호출할때 들어갈 자료형을 매번 산정하기 어려울때
+// 일일이 타입을 따로 지정하는것이 비효율적이므로 타입지정을 호출할때 지정하는 틀
+
+// 아래같은 경우는 배열에 들어가는 자료값이 일정하지 않으므로 똑같은 구조임에도 불구하고
+// 타입에 따른 함수를 여러개 복사해야 되는 번거로움
+const getLength = (arr: number[]) => {
+	return arr.length;
+};
+
+const getLength2 = (arr: string[]) => {
+	return arr.length;
+};
+
+// any타입으로 지정함으로서 위의 문제점 해결
+const getAnyLength = (arr: any[]) => {
+	return arr.length;
+};
+
+// any타입을 지정하면 정상적이지 못한 값이 들어와도 컴파일시 에러잡지 못함
+const numbers = [1, 2, 3, 4, 5];
+const letters = ['a', 'b', 'c'];
+const weired = [false, 3, '3'];
+getAnyLength(numbers);
+getAnyLength(letters);
+getAnyLength(weired);
+
+// generic으로 호출시 상세타입을 파라미터로 전달
+const getGenericLength = <t>(arr: t[]) => {
+	return arr.length;
+};
+
+// 함수호출시 미리 지정한 경로 타입을 전달하는 구조
+getGenericLength<string>(['a', 'b']);
+getGenericLength<number>([1, 2]);
+getGenericLength<number | string>([1, '2']);
