@@ -144,7 +144,19 @@ const testA = (info: commonType) => {
 // optional 처리한 값을 코드 내부적으로 사용하는 경우, 해당 값에 대한 예외처리하지 않으면 에러 발생
 const testB = (n1: number, n2: number, n3?: number): number => {
 	//const result = n1 + n2 + n3;
-	const result = n3 === undefined ? n1 + n2 : n1 + n2 + n3;
+	//const result = n3 === undefined ? n1 + n2 : n1 + n2 + n3;
+	// 더 간결하게 처리
+	const result = n1 + n2 + (n3 || 0);
 	return result;
 };
 console.log(test(1, 2));
+
+// ||연산자로 예외처리했을때 문제가 발생할 수 있는 상황
+const introduce = (name: string, age: number) => {
+	console.log(`This is ${name}`);
+	console.log(`${name} is ${age ?? 'default'} years old`);
+};
+// 기존 ||연산자보다 null병합 연산자(??)를 써야되는 이유
+// ||연산자는 빈문자나 0같이 실제적인 값조차도 false로 인식해서 예외처리하므로 예상치못한 문제발생 가능
+// ??연산자는 무조건 undefined, null같이 실제적으로 에러가 발생할만한 상황에서만 예외처리
+introduce('my Baby', 0);
