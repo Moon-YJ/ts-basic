@@ -59,6 +59,18 @@ let student5 = {
     age: 30,
     isFemale: false,
 };
+let student6 = {
+    name: 'Paul',
+    isFemale: false,
+};
 const testA = (info) => {
     console.log(info);
 };
+// 특정 parameter값을 optional 처리시 type 오류는 생기지 않지만
+// optional 처리한 값을 코드 내부적으로 사용하는 경우, 해당 값에 대한 예외처리하지 않으면 에러 발생
+const testB = (n1, n2, n3) => {
+    //const result = n1 + n2 + n3;
+    const result = n3 === undefined ? n1 + n2 : n1 + n2 + n3;
+    return result;
+};
+console.log(test(1, 2));

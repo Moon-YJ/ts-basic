@@ -128,8 +128,23 @@ let student5: StudentAB = {
 	age: 30,
 	isFemale: false,
 };
+// 1. type으로 서로 다른 두개의 인터페이스를 유니온타입으로 새로운 타입 지정(둘중 하나의 타입은 무조건 들어가야함)
+type StudentC = StudentA | StudentB;
+let student6: StudentC = {
+	name: 'Paul',
+	isFemale: false,
+};
 // 2. 객체는 아니지만 특정 커스터마이징된 타입을 재활용해야할때 type으로 지정
 type commonType = string | null;
 const testA = (info: commonType) => {
 	console.log(info);
 };
+
+// 특정 parameter값을 optional 처리시 type 오류는 생기지 않지만
+// optional 처리한 값을 코드 내부적으로 사용하는 경우, 해당 값에 대한 예외처리하지 않으면 에러 발생
+const testB = (n1: number, n2: number, n3?: number): number => {
+	//const result = n1 + n2 + n3;
+	const result = n3 === undefined ? n1 + n2 : n1 + n2 + n3;
+	return result;
+};
+console.log(test(1, 2));
