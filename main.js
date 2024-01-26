@@ -130,5 +130,21 @@ const getArrayInfo = (arr) => {
 // 제네릭으로 호출시 interface도 타입으로 전달해서 호출 가능 (해당 패턴을 가장 많이 사용)
 getArrayInfo(classInfo);
 getArrayInfo(names);
-// 아래처럼 함수에서 의도한 값과 다른값이 들어올때 generic을 사용하면 오류파악 가능
-//getArrayInfo<string>(names2); //error
+const fetchData = (info) => {
+    console.log(info);
+};
+//특정 interface형식으로 배열값이 전달될때 (DB, API data)
+const info1 = [
+    { name: 'David', age: 30, period: 40 },
+    { name: 'David', age: 30, period: 40 },
+    { name: 'David', age: 30, period: 40 },
+];
+/*
+const addPost = (data: Post) => {
+  console.log(data);
+};
+*/
+const addPost = (data) => {
+    console.log(data);
+};
+addPost({ tit: 'a', con: 'b' });
