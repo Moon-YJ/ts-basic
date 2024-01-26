@@ -1,4 +1,4 @@
-const test = (n1, n2) => {
+const calcTest = (n1, n2) => {
     console.log(n1, n2);
 };
 // 다른 로직의 함수라고 하더라도 전달되는 인수와 리턴값이 매번 같은 패턴이면 일일이 함수마다 타입 지정이 번거로움
@@ -15,6 +15,10 @@ const multiply = (n1, n2) => {
 const divide = (n1, n2) => {
     return n1 / n2;
 };
+const test = (n1, n2, n3, n4) => {
+    console.log(n1, n2, n3, n4);
+};
+test(2, 3, 4, 5);
 // 기본 타입
 let txt = 'hello';
 let num = 0;
